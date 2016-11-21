@@ -5,9 +5,6 @@
 #include <time.h>
 
 
-
-
-
 #define COL GetStdHandle(STD_OUTPUT_HANDLE)
 #define LEFT 75
 #define RIGHT 77
@@ -66,7 +63,7 @@ int maze[19][19] =
 { 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 },
 { 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1 },
 { 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };   //¸Ê;
+{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };   //ë§µ;
 int nowX = 17; int nowY = 7;
 int randomX = 2; int randomY = 17;
 int random1 = 5; int random2 = 5;
@@ -81,13 +78,13 @@ int main()
  
 
  int x, suffle = 0;
- srand((unsigned)time(NULL));  //³­¼ö ¹ß»ı
+ srand((unsigned)time(NULL));  //ë‚œìˆ˜ ë°œìƒ
  init();
  //mazeDrow();
  char a = 1;
  
  gotoxy(5, 10);
- printf("Áö³­ °ÔÀÓÀ» ºÒ·¯¿À½Ã°Ú½À´Ï±î?(ºÒ·¯¿À±â:\"1\" »õ°ÔÀÓ:\"¾Æ¹«°Å³ª ´©¸£¼¼¿ä\")");
+ printf("ì§€ë‚œ ê²Œì„ì„ ë¶ˆëŸ¬ì˜¤ì‹œê² ìŠµë‹ˆê¹Œ?(ë¶ˆëŸ¬ì˜¤ê¸°:\"1\" ìƒˆê²Œì„:\"ì•„ë¬´ê±°ë‚˜ ëˆ„ë¥´ì„¸ìš”\")");
  scanf("%d", &input);
  
 
@@ -98,7 +95,7 @@ int main()
    fpp = fopen("test.txt", "r");
    if (fpp == NULL)
    {
-    printf("ºÒ·¯¿À±â ½ÇÆĞ Á¾·áÇÕ´Ï´Ù.  »õ°ÔÀÓÀ» ÇÏ¼¼¿ä~");
+    printf("ë¶ˆëŸ¬ì˜¤ê¸° ì‹¤íŒ¨ ì¢…ë£Œí•©ë‹ˆë‹¤.  ìƒˆê²Œì„ì„ í•˜ì„¸ìš”~");
     return 0;
    }
    maze[nowX][nowY] = 0;
@@ -115,22 +112,22 @@ int main()
   x = rand() % 4 + 1;
   a = getch();
   system("cls");
-  unitMove(a);     //À¯´Ö ÀÌµ¿
-  random(x);  //Áö·Ú 1 ÀÌµ¿
-  random12(x); //Áö·Ú 2ÀÌµ¿
+  unitMove(a);     //ìœ ë‹› ì´ë™
+  random(x);  //ì§€ë¢° 1 ì´ë™
+  random12(x); //ì§€ë¢° 2ì´ë™
   fp = fopen("test.txt", "wt");
   test[suffle].unitx = nowX;
   test[suffle].unity = nowY;
   test[suffle].sasa1x = randomX;
   test[suffle].sasa1y = randomY;
   test[suffle].sasa2x = random1;
-  test[suffle].sasa2y = random2;    //Á¤º¸ÀÔ·Â
+  test[suffle].sasa2y = random2;    //ì •ë³´ì…ë ¥
 
   fprintf(fp, "%d  %d  %d  %d  %d  %d",nowX,nowY,randomX,randomY,random1,random2);
 
-  mazeDrow();      //ÀÌµ¿ Áö·Ú,À¯´Ö ¿òÁ÷ÀÌ±â
+  mazeDrow();      //ì´ë™ ì§€ë¢°,ìœ ë‹› ì›€ì§ì´ê¸°
   suffle++;
-  gameOver(a, suffle, test);   //°ÔÀÓ¿À¹ö
+  gameOver(a, suffle, test);   //ê²Œì„ì˜¤ë²„
  }
  fclose(fp);
 }
@@ -144,7 +141,7 @@ void init()
  maze[5][5] = 5;
 }
 
-void mazeDrow()    //À¯´Ö ±×¸®±â
+void mazeDrow()    //ìœ ë‹› ê·¸ë¦¬ê¸°
 {
  for (int i = 0; i < 19; i++)
  {
@@ -153,16 +150,16 @@ void mazeDrow()    //À¯´Ö ±×¸®±â
    switch (maze[i][k])
    {
    case 5:
-    RED printf("Şİ");
+    RED printf("æ­»");
     break;
    case 3:
-    GOLD printf("¡Ü");
+    GOLD printf("â—");
     break;
    case 2:
     printf("  ");
     break;
    case 1:
-    WHITE printf("¡á");
+    WHITE printf("â– ");
     break;
    case 0:
     printf("  ");
@@ -318,7 +315,7 @@ int gameOver(char a, int suffle, REPLAY k[MAX])
 
   do
   {
-   puts("GAME OVER ´Ù½ÃÇÒ·Á¸é 1À»´©¸£¼¼¿ä.(Á¾·á :q,¸®ÇÃ·¹ÀÌ :r)");
+   puts("GAME OVER ë‹¤ì‹œí• ë ¤ë©´ 1ì„ëˆ„ë¥´ì„¸ìš”.(ì¢…ë£Œ :q,ë¦¬í”Œë ˆì´ :r)");
    a = getch();
 
    if (a == 'q')
@@ -333,7 +330,7 @@ int gameOver(char a, int suffle, REPLAY k[MAX])
    }
    else if (a != '1')
    {
-    printf("Àß¸øÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+    printf("ì˜ëª»ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
 
    }
 
@@ -351,7 +348,7 @@ int gameOver(char a, int suffle, REPLAY k[MAX])
 
   do
   {
-   puts("GAME OVER ´Ù½ÃÇÒ·Á¸é 1À»´©¸£¼¼¿ä.(Á¾·á :q,¸®ÇÃ·¹ÀÌ :r)");
+   puts("GAME OVER ë‹¤ì‹œí• ë ¤ë©´ 1ì„ëˆ„ë¥´ì„¸ìš”.(ì¢…ë£Œ :q,ë¦¬í”Œë ˆì´ :r)");
 
    a = getch();
 
@@ -367,7 +364,7 @@ int gameOver(char a, int suffle, REPLAY k[MAX])
    }
    else if (a != '1')
    {
-    printf("Àß¸øÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+    printf("ì˜ëª»ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
 
    }
 
@@ -383,7 +380,7 @@ int gameOver(char a, int suffle, REPLAY k[MAX])
 
   do
   {
-   puts("GAME OVER ´Ù½ÃÇÒ·Á¸é 1À»´©¸£¼¼¿ä.(Á¾·á :q,¸®ÇÃ·¹ÀÌ :r)");
+   puts("GAME OVER ë‹¤ì‹œí• ë ¤ë©´ 1ì„ëˆ„ë¥´ì„¸ìš”.(ì¢…ë£Œ :q,ë¦¬í”Œë ˆì´ :r)");
 
    a = getch();
 
@@ -399,7 +396,7 @@ int gameOver(char a, int suffle, REPLAY k[MAX])
    }
    else if (a != '1')
    {
-    printf("Àß¸øÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+    printf("ì˜ëª»ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
 
    }
 
@@ -429,7 +426,7 @@ void replayGame(int x, REPLAY k[MAX])
   maze[k[i - 1].sasa2x][k[i - 1].sasa2y] = 0;
   mazeDrow();
   Sleep(100);
-  system("cls");     //±×¸®±â
+  system("cls");     //ê·¸ë¦¬ê¸°
  }
  returnGame();
 
